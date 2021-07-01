@@ -1,9 +1,12 @@
+/////////////////////// Application Express //////////////////////
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const app = express();
 const stuffRoutes = require('./routes/stuff');
+const userRoutes = require('./routes/user');
 
 require('dotenv').config() // Permet de cacher des informations sensibles/variables d'environnement
 
@@ -22,6 +25,7 @@ mongoose.connect('mongodb+srv://'+process.env.Mongo_ID+':'+process.env.Mongo_MP+
 
 app.use(bodyParser.json());
 
-app.use('/api/stuff', stuffRoutes);  
+app.use('/api/stuff', stuffRoutes);
+app.use('/api/auth', userRoutes);
 
 module.exports = app;
